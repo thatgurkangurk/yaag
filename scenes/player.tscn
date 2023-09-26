@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cdefj1evvdvwn" path="res://assets/player.png" id="1_t4syb"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_2tggu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -11,3 +13,6 @@ texture = ExtResource("1_t4syb")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -15, -5, -9, -11, 3, -15, 12, -15, 16, 0, 8, 15, 16, 15, 12, 11, 3, 5, -9)
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(0, -19)

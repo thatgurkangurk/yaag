@@ -1,8 +1,24 @@
 extends CharacterBody2D
 
+signal bullet_shot(bullet)
+
 @export var acceleration := 10.0
 @export var max_speed := 360.0
 @export var rotation_speed := 250.0
+
+@onready var gun = $Gun
+
+var bullet_scene := preload("res://scenes/bullet.tscn")
+
+func shoot_bullet():
+	var bullet := bullet_scene.instantiate()
+	bullet.global_position = gun.global_position
+	bullet.rotation = rotation
+	bullet_shot.emit(bullet)
+
+func _process(delta):
+	if Input.is_action_just_pressed("shoot"):
+		shoot_bullet()
 
 func prevent_outside_movement(viewport_size: Vector2):
 	if global_position.y < 0:

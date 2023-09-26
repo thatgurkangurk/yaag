@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var acceleration := 10.0
 @export var max_speed := 360.0
+@export var rotation_speed := 100.0
 
 func prevent_outside_movement(viewport_size: Vector2):
 	if global_position.y < 0:
@@ -23,6 +24,12 @@ func _physics_process(delta):
 	
 	velocity += input_vector * acceleration
 	velocity = velocity.limit_length(max_speed)
+	
+	if Input.is_action_pressed("rotate_right"):
+		rotate(deg_to_rad(rotation_speed*delta))
+		
+	if Input.is_action_pressed("rotate_left"):
+		rotate(deg_to_rad(-rotation_speed*delta))
 	
 	if input_vector.y == 0:
 		velocity = velocity.move_toward(Vector2.ZERO, 3)

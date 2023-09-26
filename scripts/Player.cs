@@ -14,6 +14,9 @@ namespace Game.Player
         [Export]
         float acceleration = 10.0f;
 
+        [Export]
+        float maxSpeed = 350.0f;
+
         /// <summary>
         /// prevent the player from going outside of the viewport
         /// </summary>
@@ -35,6 +38,7 @@ namespace Game.Player
         {
             Vector2 inputVector = new Vector2(0, Input.GetAxis(PlayerInput.Forward, PlayerInput.Backward));
             Velocity += inputVector * acceleration;
+            Velocity = Velocity.LimitLength(maxSpeed);
             MoveAndSlide();
 
             Vector2 viewportSize = GetViewportRect().Size;

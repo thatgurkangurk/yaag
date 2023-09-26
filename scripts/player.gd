@@ -10,6 +10,13 @@ func prevent_outside_movement(viewport_size: Vector2):
 	elif global_position.y > viewport_size.y:
 		# player is below the screen
 		global_position.y = 0
+		
+	if global_position.x < 0:
+		# player is too far to the left of the screen
+		global_position.x = viewport_size.x
+	elif global_position.x > viewport_size.x:
+		# player is too far to the right of the screen
+		global_position.x = 0
 
 func _physics_process(delta):
 	var input_vector := Vector2(0, Input.get_axis("move_forward", "move_backward"))
